@@ -1,6 +1,5 @@
 import os
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
-import subprocess
 from scipy.misc import imsave, imread, imresize
 import numpy as np
 import keras.models
@@ -26,7 +25,7 @@ def index():
 @app.route("/upload/", methods=['POST'])
 def upload():
     
-    
+    #Save the uploaded image file in folder "images"
     target = os.path.join(APP_ROOT, 'images/')
     print(target)
 
@@ -44,15 +43,21 @@ def upload():
 @app.route("/predict/", methods=['GET','POST'])
 def predict():
     
+    #Get the uploaded image file
     TempX = request.get_data()
     filename = TempX.decode('utf8').split("/")[-1]
     target = os.path.join(APP_ROOT, 'images/')
     destination = "/".join([target, filename])
     print(destination)
-    x = imread(destination, mode='L')
-    x = np.invert(x)
+    #Read image as gray scale
+    x = imread(destination, mode='L')  
+    # Because the training data in MNIST dataset has white digit in black background, 
+    # the model will work best with such type of data.
+    # Since input image generally shows black digit in white background, invert it. 
+    x = np.invert(x)  
+    # The model expects input image dimension of 28*28, so resize it.
     x = imresize(x,(28,28))
-    # reshape image data for use in neural network
+    # Reshape image data for use in CNN
     x = x.reshape(1,28,28,1)
     with graph.as_default():
         out = model.predict(x)
@@ -60,7 +65,7 @@ def predict():
         print(np.argmax(out, axis=1))
         response = np.array_str(np.argmax(out, axis=1))
         
-        return json.dumps(response) #return response
+        return json.dumps(response) #return predicted digit as response
             
             
 @app.route("/goback/", methods=['POST'])
