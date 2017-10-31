@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Predict Digit</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ 
+ <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+	
+	<div class="centered">
+		<img width="200px" height="200px" src=" {{url_for('send_image', filename=image_name)}}">
+	</div>
+
+	<div class="centered">
+			<input type="button" class="myButton" value="Predict" style="">			
+	</div>
+	
+	<div class="centered">
+		<h1 id="result"></h1>
+	</div>
+
+	<div class="centered">
+		<form id="goback" action="{{ url_for('goback') }}" method="POST" >
+			<input type="submit"  name="goback" value="Go Back" >			
+		</form>
+	</div>
+	<script type="text/javascript">   
+	   		$(".myButton").click(function(){
+	   			$('#result').text('  Predicting...');
+	   			var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+	   			var img =  " {{url_for('send_image', filename=image_name)}}";
+	   			$.ajax({
+	   				type: "POST",
+					url: $SCRIPT_ROOT + "/predict/",
+	   				data: img,
+	   				success: function(data){
+	   					$('#result').text('Predicted Output: ' + data);
+	   				}
+	   			});
+	   		});
+	</script>
+
+		
+</body>
+
+</html>
