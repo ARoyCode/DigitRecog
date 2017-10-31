@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Handwritten Digit Recognition using Convolutional Neural Networks</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+
+	<div class="centered">
+		<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+				<strong><label>Upload a Picture of a Handwritten Digit (0-9)</label></strong><br>
+				<input id="file-picker" size="20" type="file" name="file" accept="image/*" multiple>
+				<input type="submit"  value=" Upload " id="upload-button" style="">
+			</form>
+	</div>
+
+</body>
+
+</html>
