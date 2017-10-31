@@ -28,19 +28,17 @@ def init():
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
     
-    
-    #model.add(Dropout(0.25))
     model.add(Flatten()) # Fully connected layer
     model.add(Dense(128, activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(num_classes, activation='softmax'))
     
-    #load woeights into new model
+    #load weights into new model
     model.load_weights("weights_withDA.h5")
     print("Loaded Model from disk")
     
     #model.summary()
-    #compile and evaluate loaded model
+    #compile the loaded model
     model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adadelta(), metrics=['accuracy'])
     
     graph = tf.get_default_graph()
