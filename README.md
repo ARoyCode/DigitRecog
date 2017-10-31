@@ -8,6 +8,8 @@ Dependencies: Instal dependencies using command: pip install requirements.txt
 
 Usage: Once dependencies are installed, run the command: python main_app.py
 
-To run on localhost change main_app.py as:app.run(port=5000, debug=True)
-To listen on all public IPs: app.run(host='0.0.0.0')
-To listen on a particular IP: app.run(host='192.168.1.9')
+To run on localhost change main_app.py as:  app.run(port=5000, debug=True)
+
+To listen on all public IPs:  app.run(host='0.0.0.0')
+
+To listen on a particular IP:  app.run(host='192.168.1.9')
