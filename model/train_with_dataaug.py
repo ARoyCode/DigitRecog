@@ -7,7 +7,6 @@ from keras.layers.normalization import BatchNormalization
 from keras.utils import np_utils
 from keras.layers import Conv2D, MaxPooling2D, ZeroPadding2D, GlobalAveragePooling2D
 from keras import backend as K
-from keras.layers.advanced_activations import LeakyReLU 
 from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 import json
@@ -39,12 +38,12 @@ print('x_train shape:', x_train.shape)
 print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
 
-print('Before converting to binary class y_train[0]:', y_train[0])
+#print('Before converting to binary class y_train[0]:', y_train[0])
 # convert class vectors to binary class matrices
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
-print('After converting to binary class y_train[0]:',y_train[0])
+#print('After converting to binary class y_train[0]:',y_train[0])
 
 
 
@@ -71,7 +70,7 @@ model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(num_classes, activation='softmax'))
 
-print(model.summary())
+#print(model.summary())
 
 model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adadelta(), metrics=['accuracy'])
 
