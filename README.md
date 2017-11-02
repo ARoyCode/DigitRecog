@@ -4,7 +4,7 @@ The web app allows user to submit a handwritten digit in the form of a picture a
 The web Micro Framework is developed in Flask.
 We TensorFlow using the Keras API to train a CNN with MNIST dataset. Data augmentaion has been done using Keras ImageDataGenerator.
 
-Dependencies: Instal dependencies using command: pip install requirements.txt
+Dependencies: Install the dependencies using command: pip install requirements.txt
 
 Usage: Once dependencies are installed, run the command: python main_app.py
 
