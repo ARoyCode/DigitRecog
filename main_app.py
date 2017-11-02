@@ -77,7 +77,7 @@ def send_image(filename):
     return send_from_directory("images", filename)    
 
 if __name__ == "__main__":
-    #app.run(port=5000, debug=True)
+    app.run(port=5000, debug=True)
     # This tells your operating system to listen on all public IPs.
     #app.run(host='0.0.0.0')
-    app.run(host='192.168.1.9')
+    #app.run(host='192.168.1.9')
